@@ -1,0 +1,10 @@
+**/.env
+**/.git
+**/.gitignore
+**/bin
+**/obj
+**/.vs
+**/.vscode
+README.md
+*.postman_collection.json
+PensionSystem.Tests/

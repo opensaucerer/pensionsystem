@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "Pension Contribution Management API",
+    "description": "Complete API collection for Pension System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "Create Member",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": {
+              "raw": "{{baseUrl}}/api/members",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "members"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"dateOfBirth\": \"1990-01-01\",\n  \"email\": \"john.doe@example.com\",\n  \"phoneNumber\": \"+1234567890\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Member by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/members/{{memberId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "members", "{{memberId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Member",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": {
+              "raw": "{{baseUrl}}/api/members/{{memberId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "members", "{{memberId}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"{{memberId}}\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"dateOfBirth\": \"1990-01-01\",\n  \"email\": \"john.smith@example.com\",\n  \"phoneNumber\": \"+1234567890\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Soft Delete Member",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/members/{{memberId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "members", "{{memberId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Member Statement",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/members/{{memberId}}/statement",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "members", "{{memberId}}", "statement"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contributions",
+      "item": [
+        {
+          "name": "Add Monthly Contribution (Type 1)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": {
+              "raw": "{{baseUrl}}/api/contributions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contributions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"type\": 1,\n  \"amount\": 50000.00,\n  \"contributionDate\": \"{{$isoTimestamp}}\",\n  \"referenceNumber\": \"REF-M-123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Add Voluntary Contribution (Type 2)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": {
+              "raw": "{{baseUrl}}/api/contributions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contributions"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"type\": 2,\n  \"amount\": 25000.00,\n  \"contributionDate\": \"{{$isoTimestamp}}\",\n  \"referenceNumber\": \"REF-V-123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Member Contributions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/contributions/member/{{memberId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "contributions", "member", "{{memberId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Benefits",
+      "item": [
+        {
+          "name": "Withdraw Benefit",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": {
+              "raw": "{{baseUrl}}/api/benefits/withdraw",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "benefits", "withdraw"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"amount\": 10000.00,\n  \"type\": 1\n}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "memberId",
+      "value": "INSERT_MEMBER_GUID_HERE",
+      "type": "string"
+    }
+  ]
+}
